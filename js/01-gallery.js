@@ -28,3 +28,11 @@ function getLargeImg(e) {
   e.preventDefault();
   console.log(e.target);
 }
+
+const testTamplate = () =>
+  `<div class="modal">
+    <p>AAAAAAAAAAAAAAAAAAAAAAAAA</p>
+  </div>`;
+
+const instance = basicLightbox.create(testTamplate());
+instance.show();
