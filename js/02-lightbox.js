@@ -12,7 +12,7 @@ function createMarkUp(array) {
     )
     .join('');
 }
-galleryListEl.insertAdjacentHTML('beforeend', createMarkUp(galleryItems));
+galleryListEl.innerHTML = createMarkUp(galleryItems);
 
 function modalWindow(e) {
   e.preventDefault();

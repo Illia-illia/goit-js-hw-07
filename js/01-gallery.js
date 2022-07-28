@@ -1,9 +1,8 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 const galleryEl = document.querySelector('.gallery');
-const galleryRenderMarkup = createGalleryMarkup(galleryItems);
 
-galleryEl.insertAdjacentHTML('beforeend', galleryRenderMarkup);
+galleryEl.innerHTML = createGalleryMarkup(galleryItems);
 
 galleryEl.addEventListener('click', getLargeImg);
 
