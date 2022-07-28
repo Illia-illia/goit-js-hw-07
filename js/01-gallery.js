@@ -26,13 +26,18 @@ function createGalleryMarkup(data) {
 
 function getLargeImg(e) {
   e.preventDefault();
-  console.log(e.target);
+  // const modalImg = e.target.closest('.gallery__link').href;
+  const modalImg = e.target.dataset.source;
+  const instance = basicLightbox.create(testTamplate(modalImg));
+  instance.show(modalImg);
+  document.addEventListener('keydown', e => {
+    if (e.code === 'Escape') {
+      instance.close();
+    }
+  });
 }
 
-const testTamplate = () =>
+const testTamplate = link =>
   `<div class="modal">
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAA</p>
+    <img src ="${link}" alt ="original"/>
   </div>`;
-
-const instance = basicLightbox.create(testTamplate());
-instance.show();
