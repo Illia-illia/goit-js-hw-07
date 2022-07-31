@@ -5,15 +5,15 @@ const galleryListEl = document.querySelector('.gallery');
 function createMarkUp(obj) {
   return obj
     .map(
-      ({ preview, original, description }) => `<a class="gallery__item" href="${original}">
-  <img class="gallery__image" src="${preview}" alt="${description}" title="${description}" />
-</a>`
+      ({ preview, original, description }) => `<li><a class="gallery__item" href="${original}">
+  <img class="gallery__image" src="${preview}" alt="${description}" />
+</a></li>`
     )
     .join('');
 }
 galleryListEl.innerHTML = createMarkUp(galleryItems);
 
 const lightbox = new SimpleLightbox('.gallery a', {
-  /* options */
+  captionsData: 'alt',
+  captionDelay: '250',
 });
-lightbox.options.captionDelay = '250';

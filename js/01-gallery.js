@@ -22,20 +22,25 @@ function createGalleryMarkup(data) {
     )
     .join('');
 }
-
+let instance = {};
 function getLargeImg(e) {
-  e.preventDefault();
-  // const modalImg = e.target.closest('.gallery__link').href;
-  const modalImg = e.target.dataset.source;
-  const instance = basicLightbox.create(testTamplate(modalImg));
-  instance.show(modalImg);
-  document.addEventListener('keydown', e => {
-    if (e.code === 'Escape') {
-      instance.close();
-    }
-  });
+  if (e.target.nodeName !== 'DIV') {
+    e.preventDefault();
+    // const modalImg = e.target.closest('.gallery__link').href;
+    console.log(e.target.nodeName);
+    const modalImg = e.target.dataset.source;
+    instance = basicLightbox.create(testTamplate(modalImg));
+    instance.show(modalImg);
+    document.addEventListener('keydown', closeModal);
+  }
 }
 
+function closeModal(e) {
+  if (e.code === 'Escape') {
+    instance.close();
+    document.removeEventListener('keydown', closeModal);
+  }
+}
 const testTamplate = link =>
   `<div class="modal">
     <img src ="${link}" alt ="original"/>
