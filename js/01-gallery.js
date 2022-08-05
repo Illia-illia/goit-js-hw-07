@@ -22,25 +22,27 @@ function createGalleryMarkup(data) {
     )
     .join('');
 }
-let instance = {};
+let instance;
 function getLargeImg(e) {
   if (e.target.nodeName !== 'DIV') {
     e.preventDefault();
     // const modalImg = e.target.closest('.gallery__link').href;
-    console.log(e.target.nodeName);
     const modalImg = e.target.dataset.source;
     instance = basicLightbox.create(testTamplate(modalImg));
     instance.show(modalImg);
-    document.addEventListener('keydown', closeModal);
   }
+  document.addEventListener('keydown', closeModal);
+  console.log('add lisnter key');
 }
 
 function closeModal(e) {
   if (e.code === 'Escape') {
     instance.close();
-    document.removeEventListener('keydown', closeModal);
   }
+  document.removeEventListener('keydown', closeModal);
+  console.log('delete listner');
 }
+
 const testTamplate = link =>
   `<div class="modal">
     <img src ="${link}" alt ="original"/>
